@@ -6,6 +6,7 @@ Below is a collection of small posts about FGO mechanics. Most are originally di
 
 - [Range of `randomModifier` in the damage formula](#range-of-randommodifier-in-the-damage-formula)
 - [Maximum value of total `powerMod`](#maximum-value-of-total-powermod)
+- [`enemyServerMod` in the NP gain formula](#enemyservermod-in-the-np-gain-formula)
 - [How MISS and GUARD are determined](#how-miss-and-guard-are-determined)
 - [How the special summoning effects work](#how-the-special-summoning-effects-work)
 - [Why does the last hit have different damage value compared to a prior hit when they have the same damage distribution?](#why-does-the-last-hit-have-different-damage-value-compared-to-a-prior-hit-when-they-have-the-same-damage-distribution)
@@ -24,6 +25,12 @@ An integer in the range [900, 1100):
 ### Maximum value of total `powerMod`
 
 1000%.
+
+### `enemyServerMod` in the NP gain formula
+
+[The NP gain formula](https://blogs.nrvnqsr.com/entry.php/3306-How-much-NP-do-I-get-in-combat).
+
+The `enemyServerMod`s in the attacking and defending formulas refer to two different variables in the enemy data: `tdRate` for attacking NP gain and `tdAttackRate` for defending NP gain. They are usually the same but there's no code requirement for them to be the identical.
 
 ### How MISS and GUARD are determined
 
