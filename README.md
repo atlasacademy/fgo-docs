@@ -34,7 +34,7 @@ The `enemyServerMod`s in the attacking and defending formulas refer to two diffe
 
 ### How MISS and GUARD are determined
 
-MISS and GUARD are only for display, the proc check is still as described in [Kyte's post](https://blogs.nrvnqsr.com/entry.php/3311-How-is-effect-success-rate-calculated). Here's how they are determined:
+The status effect proc check is still as described in [Kyte's post](https://blogs.nrvnqsr.com/entry.php/3311-How-is-effect-success-rate-calculated). MISS and GUARD are only for display. Here's how they are determined:
 
 * num3 = status effect chance
 * random roll = random integer in range [0, 1000)
