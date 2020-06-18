@@ -165,4 +165,4 @@ A video of the bug in action: https://www.bilibili.com/video/av34113229 @ 1:42. 
   * 2: Stepping Stone to Ultimate Victory
 * Memories of the Far Side of the Moon  
   * 1: Spiritron Boost (All)
-  * 2: Stepping Stone To Surviva
+  * 2: Stepping Stone To Survival
