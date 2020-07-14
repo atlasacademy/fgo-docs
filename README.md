@@ -1,3 +1,4 @@
+<!-- omit in toc -->
 # Miscellaneous information about FGO gameplay
 
 [![Discord server invite](https://discordapp.com/api/guilds/502554574423457812/embed.png)](https://discord.gg/TKJmuCR)
@@ -9,8 +10,10 @@ Below is a collection of small posts about FGO mechanics. Most are originally di
 - [`enemyServerMod` in the NP gain formula](#enemyservermod-in-the-np-gain-formula)
 - [How MISS and GUARD are determined](#how-miss-and-guard-are-determined)
 - [How the special summoning effects work](#how-the-special-summoning-effects-work)
-- [Why does the last hit have different damage value compared to a prior hit when they have the same damage distribution?](#why-does-the-last-hit-have-different-damage-value-compared-to-a-prior-hit-when-they-have-the-same-damage-distribution)
+- [How hit damage is distributed](#how-hit-damage-is-distributed)
 - [How the Overkill bug happens](#how-the-overkill-bug-happens)
+- [Enemy behavior after killing taunt servant](#enemy-behavior-after-killing-taunt-servant)
+  - [Pre 2.0 update behavior](#pre-20-update-behavior)
 - [Lists of Mystic Code skills that have 500% chance in JP but 100% in NA](#lists-of-mystic-code-skills-that-have-500-chance-in-jp-but-100-in-na)
 
 ### Range of `randomModifier` in the damage formula
@@ -76,7 +79,7 @@ For example, with Shuten's first skill (60% chance Charm, 100% chance DEF down) 
 
 [Reddit post](https://www.reddit.com/r/grandorder/comments/9pmta4/the_truth_in_code_summoning_gold_orbs_rainbow/) about gold orbs, rainbow orbs and silver to gold conversions.
 
-### Why does the last hit have different damage value compared to a prior hit when they have the same damage distribution?
+### How hit damage is distributed
 
 The following formula applies to all hits' damage except for the last one:
 
@@ -138,6 +141,56 @@ Scathach's quick card and first hit of the arts card experience overkill effect 
 A video of the bug in action: https://www.bilibili.com/video/av34113229 @ 1:42. MHXA Arts card 2nd hit has the overkill bug.
 
 <div style="text-align:center"><img src="./images/OK_MHXA.png" width="500"></div>
+
+### Enemy behavior after killing taunt servant
+
+With the 2.0 update*, DW fixed this enemy behavior to be mostly consistent. Enemy will stop attacking after killing the taunt servant except for the following case:
+
+> If an enemy kills the taunt servant in the **first** attack action and the taunt servant has guts, the **second** attack action will not happen but the **third** attack action  will.
+
+You can see this scenario in this [gif](https://imgur.com/WSxjitJ). Lalter attacked and killed Spartacus with guts. Tesla didn't attack and Siegfried attacked instead.
+
+**Note:**
+* With the 2.0 update, I'm quite sure the behavior is the same even with enemy NP attack or attack with on-hit effects (e.g. Hokusai 3rd skill).
+
+You can see in the following image the reasons for the enemy behavior.
+
+* Table columns:
+  * Scenario number: `1-6`
+  * `tested`: whether all of the variables values are verified in the actual game
+  * `1st attack`: outright kills the taunt servant, deals more than 50% hp or deals less than 50% hp of damage
+  * `2nd attack`: kills the taunt servant or doesn't happen
+  * `3rd attack`: happens or doesn't happen
+  * Internal game variables and functions during the 3rd attack:
+    * `hp`: the hp value
+    * `isAlive`, `isGuts`, `checkDeadTurn`: 3 boolean flags of the **taunt servant**
+    * `narrowDownHate`: returns the list of player servants with taunt. For example, the input of the function is `[1, 2, 3]` and the first servant has taunt, the output is `[1]`.
+    * `getTargetBase`: returns the first "eligible" servant of the input list
+
+<div style="text-align:center"><img src="./images/taunt_2.x.png" width="500"></div>
+
+In all scenarios, even after the taunt servant is killed with or without guts, `narrowDownHate` returns the taunt servant, `[1]`. In scenarios 1, 2, 4-6, `getTargetBase` still considers `1` to be "dead" so it returns no eligible servant, `-1`, and there's no attack.
+
+In scenario 3, the flag `isAlive` is switched to `True` in the 3rd attack as the guts servant `hp` value is updated. `getTargetBase` found an eligible servant and the 3rd attack happens (For the 2nd attack, `isAlive` is still `False`).
+
+#### Pre 2.0 update behavior
+
+The table below details the enemy behavior before the 2.0 update. The cells that changed with the 2.0 update are highlighted.
+
+Generally, if the enemy deals more than 50% starting hp of damage and kills in the 2nd attack, there will be a 3rd attack.
+
+**Note:** This doesn't apply for enemy NP attack or attack with on-hit effects (e.g. Hokusai 3rd skill).
+
+<div style="text-align:center"><img src="./images/taunt_1.x.png" width="500"></div>
+
+The above conditions sound familiar? Yes, the overkill bug rears its head again. Because of the overkill bug, `checkDeadTurn` is set to `False` and wreaks havoc on the downstream functions:
+* Because the first attack deals more than 50% starting hp of damage, on the 2nd attack, `reducedhp` is greater than `hp`. Therefore, the game thinks the taunt servant is already dead and doesn't record `deadTurn` when the enemy kills the taunt servant.
+* As the overkill bug prevents `deadTurn` from being recorded on the 2nd attack, `checkDeadTurn` returns `False` on the 3rd attack. 
+* `narrowDownHate` and `getTargetBase` behave differently with and without guts but essentially there will be a 3rd attack.
+
+**Note:** I don't track the game code closely enough to know for sure that this behavior changes with the 2.0 update but the NA game code is definitely different between version 1.35.1 and 2.1.0. There's still this pre-2.0 [video](https://youtu.be/_5bFrrDGvro?t=140) that I haven't been able to explain.
+
+<!-- TODO: Skill length -->
 
 ### Lists of Mystic Code skills that have 500% chance in JP but 100% in NA
 
