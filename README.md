@@ -150,8 +150,7 @@ With the 2.0 update*, DW fixed this enemy behavior to be mostly consistent. Enem
 
 You can see this scenario in this [gif](https://imgur.com/WSxjitJ). Lalter attacked and killed Spartacus with guts. Tesla didn't attack and Siegfried attacked instead.
 
-**Note:**
-* With the 2.0 update, I'm quite sure the behavior is the same even with enemy NP attack or attack with on-hit effects (e.g. Hokusai 3rd skill).
+**Note:** With the 2.0 update, I'm quite sure the behavior is the same even with enemy NP attack or attack with on-hit effects (e.g. Hokusai 3rd skill).
 
 You can see in the following image the reasons for the enemy behavior.
 
@@ -167,7 +166,7 @@ You can see in the following image the reasons for the enemy behavior.
     * `narrowDownHate`: returns the list of player servants with taunt. For example, the input of the function is `[1, 2, 3]` and the first servant has taunt, the output is `[1]`.
     * `getTargetBase`: returns the first "eligible" servant of the input list
 
-<div style="text-align:center"><img src="./images/taunt_2.x.png" width="500"></div>
+<div style="text-align:center"><img src="./images/taunt_2.x.png" width="700"></div>
 
 In all scenarios, even after the taunt servant is killed with or without guts, `narrowDownHate` returns the taunt servant, `[1]`. In scenarios 1, 2, 4-6, `getTargetBase` still considers `1` to be "dead" so it returns no eligible servant, `-1`, and there's no attack.
 
@@ -179,9 +178,9 @@ The table below details the enemy behavior before the 2.0 update. The cells that
 
 Generally, if the enemy deals more than 50% starting hp of damage and kills in the 2nd attack, there will be a 3rd attack.
 
-**Note:** This doesn't apply for enemy NP attack or attack with on-hit effects (e.g. Hokusai 3rd skill).
+**Note:** This doesn't apply to enemy NP attack or attack with on-hit effects (e.g. Hokusai 3rd skill).
 
-<div style="text-align:center"><img src="./images/taunt_1.x.png" width="500"></div>
+<div style="text-align:center"><img src="./images/taunt_1.x.png" width="700"></div>
 
 The above conditions sound familiar? Yes, the overkill bug rears its head again. Because of the overkill bug, `checkDeadTurn` is set to `False` and wreaks havoc on the downstream functions:
 * Because the first attack deals more than 50% starting hp of damage, on the 2nd attack, `reducedhp` is greater than `hp`. Therefore, the game thinks the taunt servant is already dead and doesn't record `deadTurn` when the enemy kills the taunt servant.
