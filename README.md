@@ -7,6 +7,7 @@ Below is a collection of small posts about FGO mechanics. Most are originally di
 
 - [Range of `randomModifier` in the damage formula](#range-of-randommodifier-in-the-damage-formula)
 - [Maximum value of total `powerMod`](#maximum-value-of-total-powermod)
+- [Lower and upper bounds of buffs](#lower-and-upper-bounds-of-buffs)
 - [`enemyServerMod` in the NP gain formula](#enemyservermod-in-the-np-gain-formula)
 - [How MISS and GUARD are determined](#how-miss-and-guard-are-determined)
 - [How the special summoning effects work](#how-the-special-summoning-effects-work)
@@ -28,6 +29,83 @@ An integer in the range [900, 1100):
 ### Maximum value of total `powerMod`
 
 1000%.
+
+### Lower and upper bounds of buffs
+
+- Some common factors in the damage formula
+
+| Damage formula term | Buff Action | Default Value | Lower Bound | Upper Bound |
+| --- | --- | --- | --- | --- |
+| atkMod | atk | 100% | 0 | N/A |
+| defMod | defence | 100% | 0 | N/A |
+| cardMod | commandAtk | 100% | 0 | 500% |
+| cardMod | commandDef | 100% | N/A | 500% |
+| powerMod | damage | 0% | N/A | 1000% |
+| critDamageMod | criticalDamage | 0% | N/A | 500% |
+| npDamageMod | npdamage | 0% | N/A | 500% |
+
+- NP gain
+
+| NP gain formula term | Buff Action | Default Value | Lower Bound | Upper Bound |
+| --- | --- | --- | --- | --- |
+| cardMod | commandNpAtk | 100% | 0 | 500% |
+| cardMod | commandNpDef | 100% | N/A | 500% |
+| npChargeRateMod | dropNp | 100% | 0 | 500% |
+
+- Crit stars
+
+| Crit stars formula term | Buff Action | Default Value | Lower Bound | Upper Bound |
+| --- | --- | --- | --- | --- |
+| cardMod | commandStarAtk | 100% | 0 | 500% |
+| cardMod | commandStarDef | 100% | N/A | 500% |
+| starDropMod | criticalPoint | 100% | 0 | 500% |
+| enemyStarDropMod | criticalPoint | 100% | 0 | 500% |
+
+Here's how the buff values are collected and summed up in the game code:
+- Each term in the damage formula corresponds to one or many buff actions. Buff actions are like buff categories containing positive and negative buff types.
+  - The mapping of damage formula terms to buff actions can be found [here](https://github.com/atlasacademy/fgo-game-data-docs/blob/master/battle/damage.md).
+  - The mapping of buff actions to positive and negative buff types can be found [here](https://api.atlasacademy.io/export/JP/NiceBuffList.ActionList.json).
+  - For example: `atkMod` refers to the `atk` buff action which contains `upAtk` plusTypes and `downAtk` minusTypes. [Charisma buff](https://apps.atlasacademy.io/db/#/NA/buff/126) has buff type `upAtk`.
+
+- Buff actions values are calculated using the following formula:
+```python
+num = buffAction.baseParam + (total plusTypes buffs values) - (total minusTypes buff values)
+
+if buffAction.limit in (normal, lower):
+    if num < 0:
+        num = 0
+
+num = num - buffAction.baseValue;
+
+if buffAction.limit in (normal, upper):
+    if maxRate < num:
+        num = maxRate
+
+return num
+```
+- Explanation of the variables:
+  - Buff action variables can be found [here](https://api.atlasacademy.io/export/JP/NiceBuffList.ActionList.json):
+    - `baseParam`
+    - `baseValue`
+    - `limit`
+  - `maxRate` is a property of the buff item. This value can be found in the [DB](https://apps.atlasacademy.io/db/#/) or [API](https://api.atlasacademy.io/docs). If there are multiple buffs, the last maxRate is used. Different buffs of the same buff action usually have the same `maxRate` value.
+  - For example: we are trying to calculate cardMod with 5 Merlin's Hero Creation applied and no buster damage down:
+    - `cardMod` -> buff action `commandAtk` -> `plusTypes` [buff type](https://apps.atlasacademy.io/db/#/NA/buff/102) `upCommandall`
+      - `baseParam`: 1000
+      - `baseValue`: 0
+      - `limit`: normal
+      - `maxRate`: 5000
+    - num = 1000 + 1000*5 = 6000
+    - `limit` is normal but num > 0 so lower bound is not applied
+    - num = num - baseValue = 6000 - 0 = 6000
+    - `limit` is normale and num > maxRate so upper bound is applied -> num = 5000
+    - The final `cardMod` value is 5000 or 500%.
+
+Notes:
+- It's not quite correct to say the max value of `powerMod` is 1000%. As seen in [the formula mapping](https://github.com/atlasacademy/fgo-game-data-docs/blob/master/battle/damage.md), `powerMod` consists of 4 buff actions and each of them has their own limits. However, most of the common `powerMod` buffs fall into buff action `damage` which has an upper limit of 1000%.
+- The interaction can get pretty messy so when in doubt, follow the formula step by step. I purposefully used "Default Value" in the table above instead of "baseParam" or "baseValue".
+- There are also some floors in the [damage formula](https://github.com/atlasacademy/fgo-game-data-docs/blob/master/battle/damage.md) that might affect the effective buff value.
+- The buff actions parameters are from NA 1.35.1 version so they can be outdated (`specialdefence`'s limit is likely to have changed in the version 2.0+).
 
 ### `enemyServerMod` in the NP gain formula
 
