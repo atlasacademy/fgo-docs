@@ -98,14 +98,14 @@ return num
     - num = 1000 + 1000*5 = 6000
     - `limit` is normal but num > 0 so lower bound is not applied
     - num = num - baseValue = 6000 - 0 = 6000
-    - `limit` is normale and num > maxRate so upper bound is applied -> num = 5000
+    - `limit` is normal and num > maxRate so upper bound is applied -> num = 5000
     - The final `cardMod` value is 5000 or 500%.
 
 Notes:
 - It's not quite correct to say the max value of `powerMod` is 1000%. As seen in [the formula mapping](https://github.com/atlasacademy/fgo-game-data-docs/blob/master/battle/damage.md), `powerMod` consists of 4 buff actions and each of them has their own limits. However, most of the common `powerMod` buffs fall into buff action `damage` which has an upper limit of 1000%.
 - The interaction can get pretty messy so when in doubt, follow the formula step by step. I purposefully used "Default Value" in the table above instead of "baseParam" or "baseValue".
 - There are also some floors in the [damage formula](https://github.com/atlasacademy/fgo-game-data-docs/blob/master/battle/damage.md) that might affect the effective buff value.
-- The buff actions parameters are from NA 1.35.1 version so they can be outdated (`specialdefence`'s limit is likely to have changed in the version 2.0+).
+- The buff actions parameters are from NA 1.35.1 version so they can be outdated (`specialdefence`'s limit is likely to have changed in versions 2.0+).
 
 ### `enemyServerMod` in the NP gain formula
 
