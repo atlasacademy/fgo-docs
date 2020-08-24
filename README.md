@@ -8,6 +8,7 @@ Below is a collection of small posts about FGO mechanics. Most are originally di
 - [Range of `randomModifier` in the damage formula](#range-of-randommodifier-in-the-damage-formula)
 - [Maximum value of total `powerMod`](#maximum-value-of-total-powermod)
 - [Lower and upper bounds of buffs](#lower-and-upper-bounds-of-buffs)
+- [Unstackable buffs](#unstackable-buffs)
 - [`enemyServerMod` in the NP gain formula](#enemyservermod-in-the-np-gain-formula)
 - [How MISS and GUARD are determined](#how-miss-and-guard-are-determined)
 - [How the special summoning effects work](#how-the-special-summoning-effects-work)
@@ -106,6 +107,14 @@ Notes:
 - The interaction can get pretty messy so when in doubt, follow the formula step by step. I purposefully used "Default Value" in the table above instead of "baseParam" or "baseValue".
 - There are also some floors in the [damage formula](https://github.com/atlasacademy/fgo-game-data-docs/blob/master/battle/damage.md) that might affect the effective buff value.
 - The buff actions parameters are from NA 1.35.1 version so they can be outdated (`specialdefence`'s limit is likely to have changed in versions 2.0+).
+
+### Unstackable buffs
+
+Buffs which have the __same non-zero buff group__ are unstackable. For example:
+- Both [Petrify](https://apps.atlasacademy.io/db/#/NA/buff/176) from Gorgon's [Mystic Eyes A++](https://apps.atlasacademy.io/db/#/NA/skill/93552) and [Stun](https://apps.atlasacademy.io/db/#/NA/buff/178) from Plugsuit's [Gandr](https://apps.atlasacademy.io/db/#/NA/skill/980005) have buff group 500 so they don't stack.
+- [Guts](https://apps.atlasacademy.io/db/#/JP/buff/180) from [Herc's bond CE](https://apps.atlasacademy.io/db/#/JP/craft-essence/197) is of buff group 600 and [Guts](https://apps.atlasacademy.io/db/#/JP/buff/2932) from [Herc's 2nd skill post strengthening](https://apps.atlasacademy.io/db/#/JP/buff/2932) has buff group 601 so they can stack.
+- Both [Cu's 2nd skill](https://apps.atlasacademy.io/db/#/NA/servant/17/skill-2) and the CE [Under the Sun](https://apps.atlasacademy.io/db/#/NA/craft-essence/773) use the same [buff 151](https://apps.atlasacademy.io/db/#/NA/buff/151) for the Evade effect. This buff has buff group 200 so Cu's skill and the CE's effects can't stack.
+- A lot of skills use the same [buff 102](https://apps.atlasacademy.io/db/#/NA/buff/102) for the Buster Up effect. This buff has buff group 0 so a servant can carry multiple Buster Up buffs.
 
 ### `enemyServerMod` in the NP gain formula
 
