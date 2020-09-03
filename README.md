@@ -37,7 +37,7 @@ An integer in the range [900, 1100):
 
 | Damage formula term | Buff Action | Default Value | Lower Bound | Upper Bound |
 | --- | --- | --- | --- | --- |
-| atkMod | atk | 100% | 0 | N/A |
+| atkMod | atk | 100% | 0 | 500% |
 | defMod | defence | 100% | 0 | N/A |
 | cardMod | commandAtk | 100% | 0 | 500% |
 | cardMod | commandDef | 100% | N/A | 500% |
@@ -106,7 +106,6 @@ Notes:
 - It's not quite correct to say the max value of `powerMod` is 1000%. As seen in [the formula mapping](https://github.com/atlasacademy/fgo-game-data-docs/blob/master/battle/damage.md), `powerMod` consists of 4 buff actions and each of them has their own limits. However, most of the common `powerMod` buffs fall into buff action `damage` which has an upper limit of 1000%.
 - The interaction can get pretty messy so when in doubt, follow the formula step by step. I purposefully used "Default Value" in the table above instead of "baseParam" or "baseValue".
 - There are also some floors in the [damage formula](https://github.com/atlasacademy/fgo-game-data-docs/blob/master/battle/damage.md) that might affect the effective buff value.
-- The buff actions parameters are from NA 1.35.1 version so they can be outdated (`specialdefence`'s limit is likely to have changed in versions 2.0+).
 
 ### Unstackable buffs
 
