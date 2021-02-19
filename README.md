@@ -44,6 +44,7 @@ An integer in the range [900, 1100):
 | powerMod | damage | 0% | N/A | 1000% |
 | critDamageMod | criticalDamage | 0% | N/A | 500% |
 | npDamageMod | npdamage | 0% | N/A | 500% |
+| specialDefMod | specialdefence | 0% | -100% | 400% |
 
 - NP gain
 
