@@ -90,17 +90,17 @@ return num
     - `baseParam`
     - `baseValue`
     - `limit`
-  - `maxRate` is a property of the buff item. This value can be found in the [DB](https://apps.atlasacademy.io/db/#/) or [API](https://api.atlasacademy.io/docs). If there are multiple buffs, the last maxRate is used. Different buffs of the same buff action usually have the same `maxRate` value.
-  - For example: we are trying to calculate cardMod with 5 Merlin's Hero Creation applied and no buster damage down:
+  - `maxRate` is a property of the buff item. This value can be found in the [DB](https://apps.atlasacademy.io/db/#/) or [API](https://api.atlasacademy.io/docs). If there are multiple buffs, the last `maxRate` is used. Different buffs of the same buff action usually have the same `maxRate` value.
+  - For example: we are trying to calculate `cardMod` with 10 level 10 Merlin's [Hero Creation](https://apps.atlasacademy.io/db/#/NA/skill/323650) applied and no buster damage down:
     - `cardMod` -> buff action `commandAtk` -> `plusTypes` [buff type](https://apps.atlasacademy.io/db/#/NA/buff/102) `upCommandall`
       - `baseParam`: 1000
       - `baseValue`: 0
       - `limit`: normal
       - `maxRate`: 5000
-    - num = 1000 + 1000*5 = 6000
-    - `limit` is normal but num > 0 so lower bound is not applied
-    - num = num - baseValue = 6000 - 0 = 6000
-    - `limit` is normal and num > maxRate so upper bound is applied -> num = 5000
+    - `num` = 1000 + 500 * 10 = 6000 (`baseParam` = 1000 and there are 10 Hero Creation, each has `Value` of 500)
+    - `limit` is normal but `num` > 0 so lower bound is not applied
+    - `num` = `num` - `baseValue` = 6000 - 0 = 6000
+    - `limit` is normal and `num` > `maxRate` so upper bound is applied -> `num` = 5000
     - The final `cardMod` value is 5000 or 500%.
 
 Notes:
@@ -199,7 +199,7 @@ To determine which hit should have the overkill effect, the game keeps track of 
 
 Here are some examples of how the game determines when the overkill effect applies and the overkill bug in action.
 
-* Explanations of the tables' columns: 
+* Explanations of the tables' columns:
   * `reducedhp` is the provisional damage counter:
     * `reducedhp` is updated every hit
     * `reducedhp` starts at 0
@@ -271,7 +271,7 @@ Generally, if the enemy deals more than 50% starting hp of damage and kills in t
 
 The above conditions sound familiar? Yes, the overkill bug rears its head again. Because of the overkill bug, `checkDeadTurn` is set to `False` and wreaks havoc on the downstream functions:
 * Because the first attack deals more than 50% starting hp of damage, on the 2nd attack, `reducedhp` is greater than `hp`. Therefore, the game thinks the taunt servant is already dead and doesn't record `deadTurn` when the enemy kills the taunt servant.
-* As the overkill bug prevents `deadTurn` from being recorded on the 2nd attack, `checkDeadTurn` returns `False` on the 3rd attack. 
+* As the overkill bug prevents `deadTurn` from being recorded on the 2nd attack, `checkDeadTurn` returns `False` on the 3rd attack.
 * `narrowDownHate` and `getTargetBase` behave differently with and without guts but essentially there will be a 3rd attack.
 
 **Note:** I don't track the game code closely enough to know for sure that this behavior changes with the 2.0 update but the NA game code is definitely different between version 1.35.1 and 2.1.0. There's still this pre-2.0 [video](https://youtu.be/_5bFrrDGvro?t=140) that I haven't been able to explain.
@@ -280,7 +280,7 @@ The above conditions sound familiar? Yes, the overkill bug rears its head again.
 
 ### Lists of Mystic Code skills that have 500% chance in JP but 100% in NA
 
-* Mystic Code: Chaldea 
+* Mystic Code: Chaldea
   * 2: Instant Enhancement
   * 3: Emergency Evade
 * Mystic Code: Chaldea Combat Uniform
@@ -292,16 +292,16 @@ The above conditions sound familiar? Yes, the overkill bug rears its head again.
 * Anniversary Blonde
   * 1: Mana Burst
   * 3: Knight's Oath
-* Royal Brand  
-  * 1: Reaction Reinforcement 
+* Royal Brand
+  * 1: Reaction Reinforcement
   * 2: Iron Devotion
   * 3: Inescapable
-* Brilliant Summer  
+* Brilliant Summer
   * 1: Rumble Party
   * 2: Deadly Trident
-* Memories of the Lunar Sea  
+* Memories of the Lunar Sea
   * 1: Spiritron Boost
   * 2: Stepping Stone to Ultimate Victory
-* Memories of the Far Side of the Moon  
+* Memories of the Far Side of the Moon
   * 1: Spiritron Boost (All)
   * 2: Stepping Stone To Survival
