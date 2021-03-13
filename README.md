@@ -16,7 +16,7 @@ Below is a collection of small posts about FGO mechanics. Most are originally di
 - [How the Overkill bug happens](#how-the-overkill-bug-happens)
 - [Enemy behavior after killing taunt servant](#enemy-behavior-after-killing-taunt-servant)
   - [Pre 2.0 update behavior](#pre-20-update-behavior)
-- [Lists of Mystic Code skills that have 500% chance in JP but 100% in NA](#lists-of-mystic-code-skills-that-have-500-chance-in-jp-but-100-in-na)
+- [~~Lists of Mystic Code skills that have 500% chance in JP but 100% in NA~~](#lists-of-mystic-code-skills-that-have-500-chance-in-jp-but-100-in-na)
 
 ### Range of `randomModifier` in the damage formula
 
@@ -278,7 +278,9 @@ The above conditions sound familiar? Yes, the overkill bug rears its head again.
 
 <!-- TODO: Skill length -->
 
-### Lists of Mystic Code skills that have 500% chance in JP but 100% in NA
+### ~~Lists of Mystic Code skills that have 500% chance in JP but 100% in NA~~
+
+**UPDATE: All MC skills' chances were fixed on 2021-03-12**
 
 * Mystic Code: Chaldea
   * 2: Instant Enhancement
