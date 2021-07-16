@@ -90,7 +90,7 @@ return num
     - `baseParam`
     - `baseValue`
     - `limit`
-  - `maxRate` is a property of the buff item. This value can be found in the [DB](https://apps.atlasacademy.io/db/#/) or [API](https://api.atlasacademy.io/docs). If there are multiple buffs, the last `maxRate` is used. Different buffs of the same buff action usually have the same `maxRate` value.
+  - `maxRate` is a property of the buff item. This value can be found in the [DB](https://apps.atlasacademy.io/db/#/) or [API](https://api.atlasacademy.io/docs). If there are multiple buffs, the max `maxRate` is used. Different buffs of the same buff action usually have the same `maxRate` value.
   - For example: we are trying to calculate `cardMod` with 10 level 10 Merlin's [Hero Creation](https://apps.atlasacademy.io/db/#/NA/skill/323650) applied and no buster damage down:
     - `cardMod` -> buff action `commandAtk` -> `plusTypes` [buff type](https://apps.atlasacademy.io/db/#/NA/buff/102) `upCommandall`
       - `baseParam`: 1000
