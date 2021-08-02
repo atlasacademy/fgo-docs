@@ -9,7 +9,7 @@ dropChancePerHit =
 (31)      + firstCardBonus + (cardStarValue * max(1 + cardMod, 0))
 (32)      + serverRate
 (33)      + starDropMod
-(34)      - enemyStarDropMod
+(34)      + enemyStarDropMod
 (35)      + criticalModifier
         )
 (36)    * overkillModifier
@@ -20,7 +20,8 @@ Mapping of damage formula terms to [buff actions](buff.md):
 
 * cardMod = atkSvt.commandStarAtk - defSvt.commandStarDef
 * starDropMod = atkSvt.criticalPoint
-* enemyStarDropMod = defSvt.criticalPoint
+* enemyStarDropMod = defSvt.criticalStarDamageTaken
+  * Previously: enemyStarDropMod = -defSvt.criticalPoint
 
 Other constants lookup:
 
