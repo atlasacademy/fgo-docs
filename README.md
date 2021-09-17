@@ -11,6 +11,7 @@ Below is a collection of small posts about FGO mechanics. Most are originally di
 - [Unstackable buffs](#unstackable-buffs)
 - [`enemyServerMod` in the NP gain formula](#enemyservermod-in-the-np-gain-formula)
 - [How MISS and GUARD are determined](#how-miss-and-guard-are-determined)
+- [How enemy's Critical Miss is determined](#how-enemys-critical-miss-is-determined)
 - [How the special summoning effects work](#how-the-special-summoning-effects-work)
 - [How hit damage is distributed](#how-hit-damage-is-distributed)
 - [How the Overkill bug happens](#how-the-overkill-bug-happens)
@@ -161,6 +162,10 @@ For example, with Shuten's first skill (60% chance Charm, 100% chance DEF down) 
     * random roll = 761
     * num2 = 761 + 175 = 936
     * 936 < 1000 -> buff procs
+
+### How enemy's Critical Miss is determined
+
+The critical miss sign appears if the enemy has a crit chance down debuff and would have crit without the debuff assuming the rng roll is the same.
 
 ### How the special summoning effects work
 
