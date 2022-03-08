@@ -17,6 +17,7 @@ damage for this card =
 (11)    * extraCardModifier
 (12)    * max(1 - specialDefMod, 0)
 (13)    * max([1 + powerMod + selfDamageMod + (critDamageMod * isCrit) + (npDamageMod * isNP)], 0.001)
+(18)    * max(damageSpecialMod + 1, 0.001)
 (14)    * [1 + ((superEffectiveModifier - 1) * isSuperEffective)]
 (15)    + dmgPlusAdd
 (16)    + selfDmgCutAdd
@@ -35,6 +36,7 @@ Mapping of damage formula terms to [buff actions](buff.md):
 * selfDamageMod = target.selfdamage
 * critDamageMod = actor.criticalDamage
 * npDamageMod = actor.npdamage
+* damageSpecialMod = actor.damageSpecial
 * superEffectiveModifier = function Correction value
 * dmgPlusAdd = actor.givenDamage
 * selfDmgCutAdd = target.receiveDamage
