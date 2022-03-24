@@ -3,7 +3,7 @@
 
 [![Discord server invite](https://discordapp.com/api/guilds/502554574423457812/embed.png)](https://discord.gg/TKJmuCR)
 
-Below is a collection of small posts about FGO mechanics. Most are originally discussed in the Atlas Academy discord server. Some more techy information folder such as the [damage formula](deeper/battle/damage.md) can be found in the [deeper](deeper)
+Below is a collection of small posts about FGO mechanics. Most are originally discussed in the Atlas Academy discord server. Some more techy information folder such as the [damage formula](deeper/battle/damage.md) can be found in the [deeper](deeper) folder.
 
 - [Range of randomModifier in the damage formula](#range-of-randommodifier-in-the-damage-formula)
 - [Maximum value of total powerMod](#maximum-value-of-total-powermod)
