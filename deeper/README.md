@@ -1,8 +1,8 @@
 This folder contains more mathy information about FGO mechanics and internal data.
 
 - Battle:
-  - [Damage Formula](damage.md)
-  - [Buff Value Calculation](buff.md)
-  - [Critical Stars](critstars.md)
-  - [NP Gain](np.md)
-  - [32-bit Float Calculation](32-bit-float.md)
+  - [Damage Formula](battle/damage.md)
+  - [Buff Value Calculation](battle/buff.md)
+  - [Critical Stars](battle/critstars.md)
+  - [NP Gain](battle/np.md)
+  - [32-bit Float Calculation](battle/32-bit-float.md)
