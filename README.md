@@ -3,13 +3,13 @@
 
 [![Discord server invite](https://discordapp.com/api/guilds/502554574423457812/embed.png)](https://discord.gg/TKJmuCR)
 
-Below is a collection of small posts about FGO mechanics. Most are originally discussed in the Atlas Academy discord server. Some more techy information can be found in the [deeper](deeper) folder.
+Below is a collection of small posts about FGO mechanics. Most are originally discussed in the Atlas Academy discord server. Some more techy information folder such as the [damage formula](deeper/battle/damage.md) can be found in the [deeper](deeper)
 
-- [Range of `randomModifier` in the damage formula](#range-of-randommodifier-in-the-damage-formula)
-- [Maximum value of total `powerMod`](#maximum-value-of-total-powermod)
+- [Range of randomModifier in the damage formula](#range-of-randommodifier-in-the-damage-formula)
+- [Maximum value of total powerMod](#maximum-value-of-total-powermod)
 - [Lower and upper bounds of buffs](#lower-and-upper-bounds-of-buffs)
 - [Unstackable buffs](#unstackable-buffs)
-- [`enemyServerMod` in the NP gain formula](#enemyservermod-in-the-np-gain-formula)
+- [enemyServerMod in the NP gain formula](#enemyservermod-in-the-np-gain-formula)
 - [How MISS and GUARD are determined](#how-miss-and-guard-are-determined)
 - [How enemy's Critical Miss is determined](#how-enemys-critical-miss-is-determined)
 - [How the special summoning effects work](#how-the-special-summoning-effects-work)
@@ -19,7 +19,7 @@ Below is a collection of small posts about FGO mechanics. Most are originally di
   - [Pre 2.0 update behavior](#pre-20-update-behavior)
 - [~~Lists of Mystic Code skills that have 500% chance in JP but 100% in NA~~](#lists-of-mystic-code-skills-that-have-500-chance-in-jp-but-100-in-na)
 
-### Range of `randomModifier` in the damage formula
+### Range of randomModifier in the damage formula
 
 An integer in the range [900, 1100):
 
@@ -28,7 +28,7 @@ An integer in the range [900, 1100):
 
 [C# method reference](https://docs.microsoft.com/en-us/dotnet/api/system.random.next?view=netframework-4.8#System_Random_Next_System_Int32_System_Int32_).
 
-### Maximum value of total `powerMod`
+### Maximum value of total powerMod
 
 1000%.
 
@@ -117,7 +117,7 @@ Buffs which have the __same non-zero buff group__ are unstackable. For example:
 - Both [Cu's 2nd skill](https://apps.atlasacademy.io/db/#/NA/servant/17/skill-2) and the CE [Under the Sun](https://apps.atlasacademy.io/db/#/NA/craft-essence/773) use the same [buff 151](https://apps.atlasacademy.io/db/#/NA/buff/151) for the Evade effect. This buff has buff group 200 so Cu's skill and the CE's effects can't stack.
 - A lot of skills use the same [buff 102](https://apps.atlasacademy.io/db/#/NA/buff/102) for the Buster Up effect. This buff has buff group 0 so a servant can carry multiple Buster Up buffs.
 
-### `enemyServerMod` in the NP gain formula
+### enemyServerMod in the NP gain formula
 
 [The NP gain formula](https://blogs.nrvnqsr.com/entry.php/3306-How-much-NP-do-I-get-in-combat).
 
