@@ -17,6 +17,7 @@ Below is a collection of small posts about FGO mechanics. Most are originally di
 - [How the Overkill bug happens](#how-the-overkill-bug-happens)
 - [Enemy behavior after killing taunt servant](#enemy-behavior-after-killing-taunt-servant)
   - [Pre 2.0 update behavior](#pre-20-update-behavior)
+- [What affects whether a card procs a critical hit](#what-affects-whether-a-card-procs-critical-hit)
 - [~~Lists of Mystic Code skills that have 500% chance in JP but 100% in NA~~](#lists-of-mystic-code-skills-that-have-500-chance-in-jp-but-100-in-na)
 
 ### Range of randomModifier in the damage formula
@@ -280,6 +281,54 @@ The above conditions sound familiar? Yes, the overkill bug rears its head again.
 * `narrowDownHate` and `getTargetBase` behave differently with and without guts but essentially there will be a 3rd attack.
 
 **Note:** I don't track the game code closely enough to know for sure that this behavior changes with the 2.0 update but the NA game code is definitely different between version 1.35.1 and 2.1.0. There's still this pre-2.0 [video](https://youtu.be/_5bFrrDGvro?t=140) that I haven't been able to explain.
+
+### What affects whether a card procs critical hit
+
+Skills with random chance like imperial privilege can have different outcomes if you savescum and use additional skills beforehand. In the same vein, critical hits can also be tempered with, anything that affects skills will also affect critical proc rng. However, unlike skills, critical hits only enter the scene after the player selects their cards and starts their turn. Nevertheless, the player still has options to change whether cards crit or not.
+
+Let us consider [King Hassan](https://apps.atlasacademy.io/db/#/NA/servant/154), whose deck is described below:
+
+<table style="width: fit-content; float: left; margin-right: 20px; margin-bottom: 20px">
+<thead>
+<th>Card</th>
+<th>Hits</th>
+</thead>
+<tbody>
+<tr><td>Arts (A)</td><td>3</td></tr>
+<tr><td>Buster (B)</td><td>1</td></tr>
+<tr><td>Quick (Q)</td><td>5</td></tr>
+<tr><td>Extra (E)</td><td>6</td></tr>
+</tbody>
+</table>
+
+Let's assume we have a hand of his 5 cards (A-B-B-B-Q), and each card has a non-zero and non-100% chance to crit.
+
+<div style="clear:both"></div>
+
+Example scenario: B-B-Q chain and we are interested in whether the third card crits or not. Different inputs from the player can change whether it crits or not. These inputs will "advance" or "change" the rng. If the card has a 50% change to crit, a dice with 100 faces is rolled and it will crit if the number is above 50. That exact dice will always land with the number, ie why you can't savescum to get a different result. When you push the rng by "1", you're going to the next dice which will give a completely different result.
+
+- **Skills, CS:**
+    
+    - Each skill will advance the rng by a different amount depending on the number of effects it has. A basic charisma is going to advance rng following the amount of units on the field. However skadi battery or a command seal only advances the rng by 1. The amount of rng change may come in relevant given the chosen command cards. 
+
+- **The maximum amount of stars that CAN be generated:**
+    
+    - A common misconception is that it is the amount of hit count upto the current card that changes whether it crits. For example, doing B-A-Q instead of B-B-Q would be 4 hits as opposed to 2 hits, thus leading to a different crit outcome. This generalization is true in most scenarios, but it is possible to get different crit result with the same hitcount or the same crit result with different hitcount. 
+    
+    - Another misconception is that it is the amount of stars that has been generated that plays a determining factor. Once again that is true in most scenarios, but both these generalizations are a byproduct of the following 
+  
+    - What the hitcount actually does is affect how many stars can be generated. The stars that a card produces is the sum of the stars produced by each hit inside. This is why a card with a higher hitcount will typically generate more stars. Every time that a hit calculates the amount of stars, the rng will advance.
+    
+      - The rng will advance by a different amount depending on your stargen bracket. These brackets are <nobr>]0-100]</nobr>, <nobr>]100-200]</nobr> and <nobr>]200-300]</nobr>. Your position in these bracket is based on things like your stargen and card multiplier(like quick buff). If you are in the first bracket, each hit will generate up to one star, thus advance the rng by 1. If you are in the second bracket, each hit will always make 1 star and then have a chance of making a second one. However, this will still advance rng by 2. The same principle holds true for the third bracket.
+      
+        - Different things can change your stargen bracket. Alongside stargen and card multiplier, overkill and critical increase stargen by 30% and 20% respectively.
+          
+      - Certain command code can also play a role. The command cards which increases the card stargen may change the rng. Using King Hassan arts card, if the card stargen is at 90%, the stargen would push the rng three times. With a command code that gives 20% stargen, it would change the card's bracket thus push the rng 6 times. However, if the stargen started at 60%, the bracket would remain the same thus would not change the rng.
+    
+- Other command code can also play a role. For example, the Da Vinci command code. In the B-B-Q chain, if either of the first command code contains this command code. It will push the rng by 1 and thus the quick card may differ. 
+
+This description was focused for one of the card to crit. However, most random events in battle use the same aforementioned dice. For example, the damage on the cards and the ai of the enemy is also different based on that dice.
+The one notable exception is necromancy which cannot be altered with.
 
 <!-- TODO: Skill length -->
 
