@@ -1,9 +1,9 @@
 <!-- omit in toc -->
-# Miscellaneous information about FGO gameplay
+# Miscellaneous information on FGO gameplay
 
 [![Discord server invite](https://discordapp.com/api/guilds/502554574423457812/embed.png)](https://discord.gg/TKJmuCR)
 
-Below is a collection of small posts about FGO mechanics. Most are originally discussed in the Atlas Academy discord server. Some more techy information folder such as the [damage formula](deeper/battle/damage.md) can be found in the [deeper](deeper) folder.
+Below is a collection of small posts about FGO mechanics. Most are originally discussed in the Atlas Academy discord server. Some more techy information such as the [damage formula](deeper/battle/damage.md) can be found in the [deeper](deeper) folder.
 
 - [Range of randomModifier in the damage formula](#range-of-randommodifier-in-the-damage-formula)
 - [Maximum value of total powerMod](#maximum-value-of-total-powermod)
@@ -121,7 +121,7 @@ Buffs which have the __same non-zero buff group__ are unstackable. For example:
 
 [The NP gain formula](https://blogs.nrvnqsr.com/entry.php/3306-How-much-NP-do-I-get-in-combat).
 
-The `enemyServerMod`s in the attacking and defending formulas refer to two different variables in the enemy data: `tdRate` for attacking NP gain and `tdAttackRate` for defending NP gain. They are usually the same but there's no code requirement for them to be the identical.
+The `enemyServerMod`s in the attacking and defending formulas refer to two different variables in the enemy data: `tdRate` for attacking NP gain and `tdAttackRate` for defending NP gain. They are usually the same but there's no code requirement for them to be identical.
 
 ### How MISS and GUARD are determined
 
