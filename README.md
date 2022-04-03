@@ -2,7 +2,7 @@
 # Miscellaneous information on FGO gameplay
 
 [![Discord server invite](https://discordapp.com/api/guilds/502554574423457812/embed.png)](https://discord.gg/TKJmuCR)
-<div style="position: sticky; top: 2px; left: 50%; float: right"><a href="#miscellaneous-information-on-fgo-gameplay">↥Top</a></div>
+<div style="position: sticky; top: 2px; transform: translateX(100%); float: right"><a href="#miscellaneous-information-on-fgo-gameplay">↥Top</a></div>
 <div style="clear: both"></div>
 Below is a collection of small posts about FGO mechanics. Most are originally discussed in the Atlas Academy discord server. Some more techy information such as the [damage formula](deeper/battle/damage.md) can be found in the [deeper](deeper) folder.
 
