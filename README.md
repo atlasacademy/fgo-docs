@@ -286,7 +286,7 @@ The above conditions sound familiar? Yes, the overkill bug rears its head again.
 
 Skills with random chance like imperial privilege can have different outcomes if you savescum and use additional skills beforehand. In the same vein, critical hits can also be tampered with, and anything that affects skills will also affect critical proc rng. However, unlike skills, critical hits only enter the scene after the player selects their cards and starts their turn. Nevertheless, the player still has options to change whether cards crit or not.
 
-Let us consider [King Hassan](https://apps.atlasacademy.io/db/#/NA/servant/154), whose deck is described below:
+Let us consider [King Hassan](https://apps.atlasacademy.io/db/NA/servant/154), whose deck is described below:
 
 <table style="width: fit-content; float: left; margin-right: 20px; margin-bottom: 20px">
 <thead>
@@ -321,14 +321,13 @@ Example scenario: B-B-Q chain and we are interested in whether the third card cr
     
       - The rng will advance by a different amount depending on your stargen bracket. These brackets are <nobr>`[1-100]`</nobr>, <nobr>`[101-200]`</nobr> and <nobr>`[201-300]`</nobr>. Your position in these bracket is based on things like your stargen and card multiplier(like quick buff). If you are in the first bracket, each hit will generate up to one star, thus advance the rng by 1. If you are in the second bracket, each hit will always make 1 star and then have a chance of making a second one. However, this will still advance rng by 2. The same principle holds true for the third bracket.
       
-        - Different things can change your stargen bracket. Alongside stargen and card multiplier, overkill and critical increase stargen by 30% and 20% respectively. The complete formula for determining stargen bracket can be found in [Kyte's blog page](https://blogs.nrvnqsr.com/entry.php/3307-How-many-crit-stars-do-I-get-in-combat). The amount of crits prior to the card does not play a direct role, they only matter if the critical(s) push the card to the next stargen bracket through the aforementioned 20% or by overkill shenanigans. Lastly, the class of the enemy can also slightly alter the stargen based on their [server rate](https://blogs.nrvnqsr.com/entry.php/3307-How-many-crit-stars-do-I-get-in-combat?bt=31528#comment31528). The exact value for each specific enemy can be found under `crit star mod` on the Atlas DB.
+        - Different things can change your stargen bracket. Alongside stargen and card multiplier, overkill and critical increase stargen by 30% and 20% respectively. All factors affecting stargen can be found in [the complete formula](deeper/battle/critstars.md). The amount of crits prior to the card does not play a direct role, they only matter if the critical(s) push the card to the next stargen bracket through the aforementioned 20% or by overkill shenanigans. Lastly, the class of the enemy can also slightly alter the stargen based on their [server rate](https://blogs.nrvnqsr.com/entry.php/3307-How-many-crit-stars-do-I-get-in-combat?bt=31528#comment31528). The exact value for each specific enemy can be found under `crit star mod` on the Atlas DB.
           
       - Certain command codes can also play a role. The command cards which increases the card stargen may change the rng. Using King Hassan arts card, if the card stargen is at 90%, the stargen would push the rng three times. With a command code that gives 20% stargen, it would change the card's bracket thus push the rng 6 times. However, if the stargen started at 60%, the bracket would remain the same thus would not change the rng.
     
 - Other command codes can also play a role. For example, the Da Vinci command code. In the B-B-Q chain, if either of the first cards contain this cc. It will push the rng by 1 and thus the quick card may differ. 
 
-This description was focused for one of the card to crit. However, most random events in battle use the same aforementioned dice. For example, the damage on the cards and the ai of the enemy is also different based on that dice.
-The one notable exception is Necromancy CE where the number of guts is decided at the beginning of the battle(Start Quest) and cannot be altered with.
+This description was focused for one of the card to crit. However, most random events in battle use the same aforementioned dice. For example, the damage on the cards and the AI of the enemy is also different based on that dice. The only exception is guts calculation. Whether a servant comes back to life using guts is calculated using a separate dice so advancing the main dice counter won't affect whether [Necromancy CE](https://apps.atlasacademy.io/db/NA/craft-essence/73) procs and vice versa.
 
 <!-- TODO: Skill length -->
 
