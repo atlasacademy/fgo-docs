@@ -2,7 +2,8 @@
 # Miscellaneous information on FGO gameplay
 
 [![Discord server invite](https://discordapp.com/api/guilds/502554574423457812/embed.png)](https://discord.gg/TKJmuCR)
-
+<div style="position: sticky; top: 2px; left: 50%; float: right"><a href="#miscellaneous-information-on-fgo-gameplay">↥Top</a></div>
+<div style="clear: both"></div>
 Below is a collection of small posts about FGO mechanics. Most are originally discussed in the Atlas Academy discord server. Some more techy information such as the [damage formula](deeper/battle/damage.md) can be found in the [deeper](deeper) folder.
 
 - [Range of randomModifier in the damage formula](#range-of-randommodifier-in-the-damage-formula)
@@ -288,7 +289,7 @@ Skills with random chance like imperial privilege can have different outcomes if
 
 Let us consider [King Hassan](https://apps.atlasacademy.io/db/NA/servant/154), whose deck is described below:
 
-<table style="width: fit-content; float: left; margin-right: 20px; margin-bottom: 20px">
+<table style="width: fit-content; float: left; margin-right: 20px; margin-bottom: 10px">
 <thead>
 <th>Card</th>
 <th>Hits</th>
@@ -303,9 +304,9 @@ Let us consider [King Hassan](https://apps.atlasacademy.io/db/NA/servant/154), w
 
 Let's assume we have a hand of his 5 cards (A-B-B-B-Q), and each card has a non-zero and non-100% chance to crit.
 
-<div style="clear:both"></div>
-
 Example scenario: B-B-Q chain and we are interested in whether the third card crits or not. Different inputs from the player can change whether it crits or not. These inputs will "advance" or "change" the rng. If the card has a 50% change to crit, a dice with 100 faces is rolled and it will crit if the number is above 50. This exact dice will always land with the same number — this is why you can't savescum while not using any skills and get a different result. When you push the rng by "1", you're going to the next dice which will give a completely dice roll. Despite getting a different dice roll, it's still possible to not crit or get the desired outcome, you're just getting another chance at it.
+
+<div style="clear:both"></div>
 
 - **Skills, CS:**
     
@@ -327,7 +328,7 @@ Example scenario: B-B-Q chain and we are interested in whether the third card cr
     
 - Other command codes can also play a role. For example, the Da Vinci command code. In the B-B-Q chain, if either of the first cards contain this cc. It will push the rng by 1 and thus the quick card may differ. 
 
-This description was focused for one of the card to crit. However, most random events in battle use the same aforementioned dice. For example, the damage on the cards and the AI of the enemy is also different based on that dice. The only exception is guts calculation. Whether a servant comes back to life using guts is calculated using a separate dice so advancing the main dice counter won't affect whether [Necromancy CE](https://apps.atlasacademy.io/db/NA/craft-essence/73) procs and vice versa.
+This description was focused for one of the cards to crit. However, most random events in battle use the same aforementioned dice. For example, the damage on the cards and the AI of the enemy is also different based on that dice. The only exception is guts calculation. Whether a servant comes back to life using guts is calculated using a separate dice so advancing the main dice counter won't affect whether [Necromancy CE](https://apps.atlasacademy.io/db/NA/craft-essence/73) procs guts and vice versa.
 
 <!-- TODO: Skill length -->
 
