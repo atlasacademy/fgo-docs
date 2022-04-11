@@ -3,3 +3,4 @@
 - [Critical Stars](critstars.md)
 - [NP Gain](np.md)
 - [32-bit Float Calculation](32-bit-float.md)
+- [Big and Deep SL](dsl.md)
