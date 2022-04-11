@@ -4,7 +4,8 @@
 [![Discord server invite](https://discordapp.com/api/guilds/502554574423457812/embed.png)](https://discord.gg/TKJmuCR)
 <div style="position: sticky; top: 2px; transform: translateX(100%); float: right"><a href="#miscellaneous-information-on-fgo-gameplay">↥Top</a></div>
 <div style="clear: both"></div>
-Below is a collection of small posts about FGO mechanics. Most are originally discussed in the Atlas Academy discord server. Some more techy information such as the [damage formula](deeper/battle/damage.md) can be found in the [deeper](deeper) folder.
+
+Below is a collection of small posts about FGO mechanics. Most are originally discussed in the Atlas Academy discord server. Some more techy information such as the [damage formula](deeper/battle/damage.md) can be found in the [deeper](deeper/README.md) folder.
 
 - [Range of randomModifier in the damage formula](#range-of-randommodifier-in-the-damage-formula)
 - [Maximum value of total powerMod](#maximum-value-of-total-powermod)
@@ -18,7 +19,7 @@ Below is a collection of small posts about FGO mechanics. Most are originally di
 - [How the Overkill bug happens](#how-the-overkill-bug-happens)
 - [Enemy behavior after killing taunt servant](#enemy-behavior-after-killing-taunt-servant)
   - [Pre 2.0 update behavior](#pre-20-update-behavior)
-- [What affects whether a card procs a critical hit](#what-affects-whether-a-card-procs-critical-hit)
+- [What affects whether a card procs critical hit](#what-affects-whether-a-card-procs-critical-hit)
 - [~~Lists of Mystic Code skills that have 500% chance in JP but 100% in NA~~](#lists-of-mystic-code-skills-that-have-500-chance-in-jp-but-100-in-na)
 
 ### Range of randomModifier in the damage formula
@@ -309,24 +310,24 @@ Example scenario: B-B-Q chain and we are interested in whether the third card cr
 <div style="clear:both"></div>
 
 - **Skills, CS:**
-    
-    - Each skill will advance the rng by a different amount depending on the number of effects it has and how many units it affects. For example, a basic charisma is going to advance rng following the amount of units on the field. However, skadi battery or a command seal only advances the rng by 1. The amount of rng change may come in relevant given the chosen command cards. 
+
+    - Each skill will advance the rng by a different amount depending on the number of effects it has and how many units it affects. For example, a basic charisma is going to advance rng following the amount of units on the field. However, skadi battery or a command seal only advances the rng by 1. The amount of rng change may come in relevant given the chosen command cards.
 
 - **The maximum amount of stars that CAN be generated:**
-    
-    - A common misconception is that it is the hit count up to the current card that changes whether it crits. For example, doing B-A-Q instead of B-B-Q would be 4 hits as opposed to 2 hits, thus leading to a different crit outcome. This generalization is true in most scenarios, but it is possible to get different crit result with the same hitcount or the same crit result with different hitcount. 
-    
+
+    - A common misconception is that it is the hit count up to the current card that changes whether it crits. For example, doing B-A-Q instead of B-B-Q would be 4 hits as opposed to 2 hits, thus leading to a different crit outcome. This generalization is true in most scenarios, but it is possible to get different crit result with the same hitcount or the same crit result with different hitcount.
+
     - Another misconception is that it is the amount of stars that has been generated that plays a determining factor. Once again that is true in most scenarios, but both these generalizations are a byproduct of the following:
-  
+
     - What the hitcount actually does is affect how many stars can be generated. The stars that a card produces is the sum of the stars produced by each hit inside. This is why a card with a higher hitcount will typically generate more stars. Every time that a hit calculates the amount of stars, the rng will advance.
-    
+
       - The rng will advance by a different amount depending on your stargen bracket. These brackets are <nobr>`[1-100]`</nobr>, <nobr>`[101-200]`</nobr> and <nobr>`[201-300]`</nobr>. Your position in these bracket is based on things like your stargen and card multiplier(like quick buff). If you are in the first bracket, each hit will generate up to one star, thus advance the rng by 1. If you are in the second bracket, each hit will always make 1 star and then have a chance of making a second one. However, this will still advance rng by 2. The same principle holds true for the third bracket.
-      
+
         - Different things can change your stargen bracket. Alongside stargen and card multiplier, overkill and critical increase stargen by 30% and 20% respectively. All factors affecting stargen can be found in [the complete formula](deeper/battle/critstars.md). The amount of crits prior to the card does not play a direct role, they only matter if the critical(s) push the card to the next stargen bracket through the aforementioned 20% or by overkill shenanigans. Lastly, the class of the enemy can also slightly alter the stargen based on their [server rate](https://blogs.nrvnqsr.com/entry.php/3307-How-many-crit-stars-do-I-get-in-combat?bt=31528#comment31528). The exact value for each specific enemy can be found under `crit star mod` on the Atlas DB.
-          
+
       - Certain command codes can also play a role. The command cards which increases the card stargen may change the rng. Using King Hassan arts card, if the card stargen is at 90%, the stargen would push the rng three times. With a command code that gives 20% stargen, it would change the card's bracket thus push the rng 6 times. However, if the stargen started at 60%, the bracket would remain the same thus would not change the rng.
-    
-- Other command codes can also play a role. For example, the Da Vinci command code. In the B-B-Q chain, if either of the first cards contain this cc. It will push the rng by 1 and thus the quick card may differ. 
+
+- Other command codes can also play a role. For example, the Da Vinci command code. In the B-B-Q chain, if either of the first cards contain this cc. It will push the rng by 1 and thus the quick card may differ.
 
 This description was focused for one of the cards to crit. However, most random events in battle use the same aforementioned dice. For example, the damage on the cards and the AI of the enemy is also different based on that dice. The only exception is guts calculation. Whether a servant comes back to life using guts is calculated using a separate dice so advancing the main dice counter won't affect whether [Necromancy CE](https://apps.atlasacademy.io/db/NA/craft-essence/73) procs guts and vice versa.
 

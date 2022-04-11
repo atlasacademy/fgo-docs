@@ -6,3 +6,4 @@ This folder contains more mathy information about FGO mechanics and internal dat
   - [Critical Stars](battle/critstars.md)
   - [NP Gain](battle/np.md)
   - [32-bit Float Calculation](battle/32-bit-float.md)
+  - [Big and Deep SL](battle/dsl.md)
