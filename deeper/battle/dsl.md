@@ -4,7 +4,7 @@
 This page will discuss other SL methods that give players a lot more chances to get good RNG rolls compared to mormal SL.
 
 ### Motivation
-Some TA scripts require a lot of favorable and unlikely RNG rolls to succeed. To change the outcome of a particular RNG roll, you can close the game and [advance the RNG state](../../readme.md#what-affects-whether-a-card-procs-critical-hit) to get a different RNG roll. I will refer to this method as normal SL.
+Some TA scripts require a lot of favorable and unlikely RNG rolls to succeed. To change the outcome of a particular RNG roll, you can close the game and [advance the RNG state](../../README.md#what-affects-whether-a-card-procs-critical-hit) to get a different RNG roll. I will refer to this method as normal SL.
 
 However, normal SL has some major drawbacks. Firstly, you can only return to the state right before the RNG advancing action is taken. Secondly, you are limited to a short list of RNG advancing actions possible and if you run out of them, you will have to restart the quest. Big and Deep SL are a way to overcome these limitations.
 
