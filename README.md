@@ -8,6 +8,7 @@
 Below is a collection of small posts about FGO mechanics. Most are originally discussed in the Atlas Academy discord server. Some more techy information such as the [damage formula](deeper/battle/damage.md) can be found in the [deeper](deeper/README.md) folder.
 
 - [Range of randomModifier in the damage formula](#range-of-randommodifier-in-the-damage-formula)
+- [Arash and Chen Gong NP OC effect randomModifier](#arash-and-chen-gong-np-oc-effect-randommodifier)
 - [Maximum value of total powerMod](#maximum-value-of-total-powermod)
 - [Lower and upper bounds of buffs](#lower-and-upper-bounds-of-buffs)
 - [Unstackable buffs](#unstackable-buffs)
@@ -30,6 +31,9 @@ An integer in the range [900, 1100):
 - 1100: exclusive upper bound (1.1 `randomModifier` is **not** possible)
 
 [C# method reference](https://docs.microsoft.com/en-us/dotnet/api/system.random.next?view=netframework-4.8#System_Random_Next_System_Int32_System_Int32_).
+
+### Arash and Chen Gong NP OC effect randomModifier
+Because [Arash](https://apps.atlasacademy.io/db/JP/servant/16/noble-phantasms) and [Chen Gong](https://apps.atlasacademy.io/db/JP/servant/258/noble-phantasms) NP OC effect is an extra deal damage function, they use a different `randomModifier`, independent from the main damage function's `randomModifier`.
 
 ### Maximum value of total powerMod
 
@@ -69,7 +73,7 @@ An integer in the range [900, 1100):
 
 Here's how the buff values are collected and summed up in the game code:
 - Each term in the damage formula corresponds to one or many buff actions. Buff actions are like buff categories containing positive and negative buff types.
-  - The mapping of damage formula terms to buff actions can be found [here](https://github.com/atlasacademy/fgo-game-data-docs/blob/master/battle/damage.md).
+  - The mapping of damage formula terms to buff actions can be found [here](deeper/battle/damage.md).
   - The mapping of buff actions to positive and negative buff types can be found [here](https://api.atlasacademy.io/export/JP/NiceBuffList.ActionList.json).
   - For example: `atkMod` refers to the `atk` buff action which contains `upAtk` plusTypes and `downAtk` minusTypes. [Charisma buff](https://apps.atlasacademy.io/db/#/NA/buff/126) has buff type `upAtk`.
 
@@ -108,9 +112,9 @@ return num
     - The final `cardMod` value is 5000 or 500%.
 
 Notes:
-- It's not quite correct to say the max value of `powerMod` is 1000%. As seen in [the formula mapping](https://github.com/atlasacademy/fgo-game-data-docs/blob/master/battle/damage.md), `powerMod` consists of 4 buff actions and each of them has their own limits. However, most of the common `powerMod` buffs fall into buff action `damage` which has an upper limit of 1000%.
+- It's not quite correct to say the max value of `powerMod` is 1000%. As seen in [the formula mapping](deeper/battle/damage.md), `powerMod` consists of 4 buff actions and each of them has their own limits. However, most of the common `powerMod` buffs fall into buff action `damage` which has an upper limit of 1000%.
 - The interaction can get pretty messy so when in doubt, follow the formula step by step. I purposefully used "Default Value" in the table above instead of "baseParam" or "baseValue".
-- There are also some floors in the [damage formula](https://github.com/atlasacademy/fgo-game-data-docs/blob/master/battle/damage.md) that might affect the effective buff value.
+- There are also some floors in the [damage formula](deeper/battle/damage.md) that might affect the effective buff value.
 
 ### Unstackable buffs
 
