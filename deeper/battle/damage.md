@@ -43,6 +43,7 @@ Mapping of damage formula terms to [buff actions](buff.md):
 
 Other constants lookup:
 
+* npDamageMultiplier only applies to NP card
 * firstCardBonus, cardDamageValue:
   * firstCardBonus: [NiceCard](https://api.atlasacademy.io/export/JP/NiceCard.json).card.order.addAtk
   * cardDamageValue: [NiceCard](https://api.atlasacademy.io/export/JP/NiceCard.json).card.order.adjustAtk
@@ -54,4 +55,3 @@ Other constants lookup:
 * extraCardModifier:
   * [NiceConstant](https://api.atlasacademy.io/export/JP/NiceConstant.json).EXTRA_ATTACK_RATE_GRAND = 3.5 if it's a color brave chain
   * [NiceConstant](https://api.atlasacademy.io/export/JP/NiceConstant.json).EXTRA_ATTACK_RATE_SINGLE = 2 otherwise (only applies to extra card)
-* npDamageMultiplier only applies to NP card
