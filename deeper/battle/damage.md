@@ -43,15 +43,16 @@ Mapping of damage formula terms to [buff actions](buff.md):
 
 Other constants lookup:
 
-* npDamageMultiplier only applies to NP card
+* npDamageMultiplier: only applies to NP card, 1 otherwise
 * firstCardBonus, cardDamageValue:
   * firstCardBonus: [NiceCard](https://api.atlasacademy.io/export/JP/NiceCard.json).card.order.addAtk
   * cardDamageValue: [NiceCard](https://api.atlasacademy.io/export/JP/NiceCard.json).card.order.adjustAtk
 * classAtkBonus: [NiceClassAttackRate](https://api.atlasacademy.io/export/JP/NiceClassAttackRate.json).class
 * triangleModifier: [NiceClassRelation](https://api.atlasacademy.io/export/JP/NiceClassRelation.json).actor.target
 * attributeModifier: [NiceAttributeRelation](https://api.atlasacademy.io/export/JP/NiceAttributeRelation.json).actor.target
-* criticalModifier: [NiceConstant](https://api.atlasacademy.io/export/JP/NiceConstant.json).CRITICAL_ATTACK_RATE = 2 (only applies if critical)
-* busterChainModifier: [NiceConstant](https://api.atlasacademy.io/export/JP/NiceConstant.json).CHAINBONUS_BUSTER_RATE = 0.2 if buster card in buster chain
+* criticalModifier: [NiceConstant](https://api.atlasacademy.io/export/JP/NiceConstant.json).CRITICAL_ATTACK_RATE = 2 (only applies if critical, 1 otherwise)
+* busterChainModifier: [NiceConstant](https://api.atlasacademy.io/export/JP/NiceConstant.json).CHAINBONUS_BUSTER_RATE = 0.2 if buster card in buster chain, 0 otherwise
 * extraCardModifier:
   * [NiceConstant](https://api.atlasacademy.io/export/JP/NiceConstant.json).EXTRA_ATTACK_RATE_GRAND = 3.5 if it's a color brave chain
-  * [NiceConstant](https://api.atlasacademy.io/export/JP/NiceConstant.json).EXTRA_ATTACK_RATE_SINGLE = 2 otherwise (only applies to extra card)
+  * [NiceConstant](https://api.atlasacademy.io/export/JP/NiceConstant.json).EXTRA_ATTACK_RATE_SINGLE = 2 otherwise
+  * 1 if not extra card
