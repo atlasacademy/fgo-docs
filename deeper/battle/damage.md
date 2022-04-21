@@ -49,7 +49,9 @@ Other constants lookup:
 * classAtkBonus: [NiceClassAttackRate](https://api.atlasacademy.io/export/JP/NiceClassAttackRate.json).class
 * triangleModifier: [NiceClassRelation](https://api.atlasacademy.io/export/JP/NiceClassRelation.json).actor.target
 * attributeModifier: [NiceAttributeRelation](https://api.atlasacademy.io/export/JP/NiceAttributeRelation.json).actor.target
-* criticalModifier: [NiceConstant](https://api.atlasacademy.io/export/JP/NiceConstant.json).CRITICAL_ATTACK_RATE = 2
+* criticalModifier: [NiceConstant](https://api.atlasacademy.io/export/JP/NiceConstant.json).CRITICAL_ATTACK_RATE = 2 (only applies if critical)
+* busterChainModifier: [NiceConstant](https://api.atlasacademy.io/export/JP/NiceConstant.json).CHAINBONUS_BUSTER_RATE = 0.2 if buster card in buster chain
 * extraCardModifier:
   * [NiceConstant](https://api.atlasacademy.io/export/JP/NiceConstant.json).EXTRA_ATTACK_RATE_GRAND = 3.5 if it's a color brave chain
   * [NiceConstant](https://api.atlasacademy.io/export/JP/NiceConstant.json).EXTRA_ATTACK_RATE_SINGLE = 2 otherwise (only applies to extra card)
+* npDamageMultiplier only applies to NP card
