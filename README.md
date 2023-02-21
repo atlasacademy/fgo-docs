@@ -205,9 +205,9 @@ Therefore, the last hit's damage can be different from a prior hit's even with t
 
 What is the Overkill bug?
 
-> For cards (not NPs), if you hit an enemy below **half of the HP they had at the start of the current turn** you get 1.5x NP gain as if you were overkilling.
+> In various circumstances, face cards (not NPs) can get 1.5x NP gain similar to the overkilling effect, despite the card not killing the enemy.
 
-To determine which hit should have the overkill effect, the game keeps track of provisional damage between hits and compares it with the target's HP value. The target's HP is updated between cards while the provisional damage counter is not reset between cards. This leads to double counting of damage dealt and the effect of OK when the target's HP is less than half of its start value.
+To determine which hit should have the overkill effect, the game keeps track of provisional damage between hits and compares it with the target's HP value. The target's HP is updated between cards while the provisional damage counter is not reset between cards. This leads to double counting of damage dealt and "overkilling" when the target is still alive.
 
 Here are some examples of how the game determines when the overkill effect applies and the overkill bug in action.
 
@@ -221,7 +221,7 @@ Here are some examples of how the game determines when the overkill effect appli
     * `hp` is updated between cards
   * `OK` is whether the hit has overkill effect:
     * `end reducedhp` < `hp` -> Normal
-    * `end reducedhp` > `hp` -> OK
+    * `end reducedhp` >= `hp` -> OK
 
 * Scathach BQAE:
 
