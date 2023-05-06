@@ -241,6 +241,8 @@ A video of the bug in action: https://www.bilibili.com/video/av34113229 @ 1:42. 
 
 <div style="text-align:center"><img src="./images/OK_MHXA.png" width="500"></div>
 
+* `reducedhp` is also reset a `deadFunction` (<img src="https://static.atlasacademy.io/NA/BuffIcons/bufficon_350.png" alt="Trigger skill on Death" title="Trigger skill on Death" height="20" width="20"> Trigger skill on Death) or a `gutsFunction` (<img src="https://static.atlasacademy.io/NA/BuffIcons/bufficon_365.png" alt="Trigger skill on Death" title="Trigger skill on Guts" height="20" width="20"> Trigger skill on Guts) activates. For example, as seen in [this video of the behaviour in Valentine's 2023 (NA) CQ](https://www.youtube.com/watch?v=CGVNWn8ZBRc), the observed charge gain on Romulus-Quirinus's Arts card is **54.15%** with the card dealing **0** overkill hits on Artemis; however the expected charge gain should be **72.19%** with the card dealing **2** overkill hits on Artemis.
+
 ### Enemy behavior after killing taunt servant
 
 With the 2.0 update*, DW fixed this enemy behavior to be mostly consistent. Enemy will stop attacking after killing the taunt servant except for the following case:
