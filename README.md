@@ -250,6 +250,9 @@ A video of the bug in action: https://www.bilibili.com/video/av34113229 @ 1:42. 
 
     i.e. The `reducedhp` *should have been* `68435` *before* the first hit of the arts card; this would have made the `reducedhp` *after* the arts card (`136357`) greater than the enemy HP (`84543`). This is what the first row in the above table shows. However, as we see in the second row, the `reducedhp` was reset by the time the arts card hit; meaning that the *actual* `reducedhp` *after* the arts card was merely `67922` (which is not greater than the enemy HP). Thus, no OK hits are observed on this card.
 
+    > **Note**
+    > It is likely that there are functions apart from `deadFunction` and `gutsFunction` which can reset the `reducedHp`
+
 ### Enemy behavior after killing taunt servant
 
 With the 2.0 update*, DW fixed this enemy behavior to be mostly consistent. Enemy will stop attacking after killing the taunt servant except for the following case:
