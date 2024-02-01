@@ -251,7 +251,9 @@ A video of the bug in action: https://www.bilibili.com/video/av34113229 @ 1:42. 
     i.e. The `reducedhp` *should have been* `68435` *before* the first hit of the arts card; this would have made the `reducedhp` *after* the arts card (`136357`) greater than the enemy HP (`84543`). This is what the first row in the above table shows. However, as we see in the second row, the `reducedhp` was reset by the time the arts card hit; meaning that the *actual* `reducedhp` *after* the arts card was merely `67922` (which is not greater than the enemy HP). Thus, no OK hits are observed on this card.
 
     > **Note**
+    > `deadFunction` and `gutsFunction` also reset the `reducedHp` for *all enemies* (i.e., In a wave where an AOE attack that kills one enemy with `deadFunction`/`gutsFunction`, the `reducedHp` for the other enemy/eneemies is also reset; subsequent face cards that attack a surviving enemy start at 0 `reducedHp`
     > It is likely that there are functions apart from `deadFunction` and `gutsFunction` which can reset the `reducedHp`
+    > Regardless of `deadFunction` and `gutsFunction`, guts proc itself (`createResurrection`) also resets reducedHp on the associated enemy
 
 ### Enemy behavior after killing taunt servant
 
